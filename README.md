@@ -11,3 +11,4 @@ To allow `Terraform's AWS provider` to talk to the `AWS API`, create an access t
   export AWS_SECRET_ACCESS_KEY=<your_access_token_secret_here>
   ```
 - For HCP Terraform, assign the access token to your project's workspace `Variables Section`. Assign the 2 access tokens details/values `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` as `environment variables` and mark them as `sensitive` for security.
+  <img width="1581" height="490" alt="access_token_img" src="https://github.com/user-attachments/assets/e0811993-2282-4b2e-aade-b084a78560df" />
