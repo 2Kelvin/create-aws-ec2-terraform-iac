@@ -2,7 +2,12 @@
 
 Creating an AWS EC2 instance using Terraform
 
-Key points to note:
+### Remember
+
+To run `terraform login` to login to HCP Terraform (if needed) inorder to setup the access token to use for any IAC implementations.
+
+### Key points to note:
+
 To allow `Terraform's AWS provider` to talk to the `AWS API`, create an access token for your IAM user:
 
 - For local Terraform use, assign the access token details to these 2 environment variables in your terminal:
