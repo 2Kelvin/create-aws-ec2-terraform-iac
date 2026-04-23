@@ -27,9 +27,9 @@ To allow `Terraform's AWS provider` to talk to the `AWS API`, create an access t
   - The `IPV4 DNS URL` is actually derived from the `IPV4 Address` as seen in its name in the URL
   - Both `IPV4 DNS URL` and `IPV4 Address` change every time the instance is stopped and started
   - For a consistent IPV4 Address use `Elastic IP`
-- A `Security Group` is just a fancy name for `Firewall (Rules)`.
+- A `Security Group` is just a fancy name for `Firewall (Allow/Deny Rules)`.
 
 ## Issues I faced
 
 - EC2 not accessible: Connection timed out when trying to connect to the container using SSH.
-    - **Fix**: I resolved this by creating a security group (Firewall) and defining an allow SSH rule in the security group in terraform. By default Terraform assigns no default Security Group and all incoming ports are disabled. To allow ports usage like SSH (22) you have to explicitly define a Security Group and SSH rule.
+  - **Fix**: I resolved this by creating a security group (Firewall) and defining an allow SSH rule in the security group in terraform. By default Terraform assigns no default Security Group and all incoming ports are disabled. To allow ports usage like SSH (22) you have to explicitly define a Security Group and SSH rule.

@@ -20,7 +20,7 @@ resource "aws_security_group" "my_cicd_securitygroup" {
 
 # allowing SSH in security group (firewall)
 resource "aws_vpc_security_group_ingress_rule" "allow_ssh" {
-  description       = "Enabling SSH port past the EC2 firewall"
+  description       = "Enable SSH port past the EC2 firewall"
   security_group_id = aws_security_group.my_cicd_securitygroup.id
   ip_protocol       = "tcp"
   from_port         = 22
