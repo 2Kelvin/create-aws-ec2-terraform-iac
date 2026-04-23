@@ -1,10 +1,10 @@
 terraform {
-  # connecting to HCP Terraform to store and manage my aws resources state
+  # connecting to HCP Terraform to store and manage my aws infrastructure state
   cloud {
     organization = "my_iac_projects"
     workspaces {
       project = "Full Automated CICD Pipeline"
-      name = "automated-cicd"
+      name    = "automated-cicd"
     }
   }
 
