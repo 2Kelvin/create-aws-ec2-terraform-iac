@@ -1,7 +1,7 @@
 variable "ec2_name" {
   description = "Name of the AWS EC2 instance"
   type        = string
-  default     = "my_terraform_ec2"
+  default     = "ec2_with_docker"
 }
 
 variable "ec2_type" {

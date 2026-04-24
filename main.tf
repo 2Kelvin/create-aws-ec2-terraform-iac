@@ -40,7 +40,7 @@ resource "aws_vpc_security_group_egress_rule" "allow_all_outbound" {
 }
 
 # EC2 instance full setup
-resource "aws_instance" "my_terraform_ec2" {
+resource "aws_instance" "ec2_with_docker" {
   ami           = data.aws_ami.ubuntu.id # AMI image
   instance_type = var.ec2_type           # ec2 type
   tags = {
@@ -49,4 +49,6 @@ resource "aws_instance" "my_terraform_ec2" {
   key_name = var.ec2_ssh_key # AWS EC2 SSH key pair
   # using my custom security group for my EC2 instance
   vpc_security_group_ids = [aws_security_group.my_cicd_securitygroup.id]
+  # install docker on EC2 boot up
+  user_data = file("install_docker.sh")
 }

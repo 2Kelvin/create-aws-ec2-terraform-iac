@@ -3,8 +3,8 @@ terraform {
   cloud {
     organization = "my_iac_projects"
     workspaces {
-      project = "Full Automated CICD Pipeline"
-      name    = "automated-cicd"
+      project = "EC2 With Docker"
+      name    = "ec2-docker"
     }
   }
 
