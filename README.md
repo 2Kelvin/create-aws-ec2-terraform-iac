@@ -20,18 +20,17 @@ Creating an AWS EC2 instance using Terraform and installing `Docker` automatical
 ## New Things I've Learnt
 
 1. Use EC2's `public IPV4 address` for SSHing (just like a regular VM) rather than the long EC2's `public IPV4 DNS URL`.
-
-- The DNS resolution of `IPV4 DNS URL` is slower than the `IPV4 address` when SSHing to instance.
-- The `IPV4 DNS URL` is actually derived from the `IPV4 Address` as seen in its URL
-- Both `IPV4 DNS URL` and `IPV4 Address` change every time the instance is stopped and started
-- For a consistent and unchanging IPV4 Address use `Elastic IP`
+   - The DNS resolution of `IPV4 DNS URL` is slower than the `IPV4 address` when SSHing to instance.
+   - The `IPV4 DNS URL` is actually derived from the `IPV4 Address` as seen in its URL
+   - Both `IPV4 DNS URL` and `IPV4 Address` change every time the instance is stopped and started
+   - For a consistent and unchanging IPV4 Address use `Elastic IP`
 
 2. A `Security Group` is just a fancy name for `Firewall (Allow/Deny Rules)`.
 
 ## Issues I faced
 
 1. EC2 not accessible: Connection timed out when trying to connect to the instance using SSH.
+   - **Fix**: I resolved this by creating a security group (Firewall) and defining an allow SSH rule which I linked to my security group in terraform. By default Terraform assigns a default Security Group in which all incoming ports are disabled for security purposes. To allow ports usage like SSH (22) you have to explicitly define a Security Group and an SSH rule. Note: Remember to add the `key_pair name` attribute in the instance to allow connections through SSH.
 
-- **Fix**: I resolved this by creating a security group (Firewall) and defining an allow SSH rule which I linked to my security group in terraform. By default Terraform assigns a default Security Group in which all incoming ports are disabled for security purposes. To allow ports usage like SSH (22) you have to explicitly define a Security Group and an SSH rule. Note: Remember to add the `key_pair name` attribute in the instance to allow connections through SSH. 
-
-2. Use the `user_data` instance attribute to pass commands or script to run on instance startup. In my case I pass the `install-docker.sh` script which does exactly that; install docker into the EC2.
+2. I did not know how to have the EC2 built preinstalled with Docker without having to use extra tools like Ansible.
+   - **Fix**: I learnt about the `user_data` instance attribute and used it to pass commands/script to run on instance startup. In my case I passed the `install-docker.sh` script which does exactly that; install docker into the EC2 on start up.
