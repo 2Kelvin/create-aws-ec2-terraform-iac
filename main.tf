@@ -50,5 +50,5 @@ resource "aws_instance" "ec2_with_docker" {
   # using my custom security group for my EC2 instance
   vpc_security_group_ids = [aws_security_group.my_cicd_securitygroup.id]
   # install docker on EC2 boot up
-  user_data = file("install_docker.sh")
+  user_data = file("install-docker.sh")
 }
