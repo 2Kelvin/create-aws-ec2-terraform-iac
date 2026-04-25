@@ -34,4 +34,4 @@ Creating an AWS EC2 instance using Terraform and installing `Docker` automatical
 
 - **Fix**: I resolved this by creating a security group (Firewall) and defining an allow SSH rule which I linked to my security group in terraform. I also added the `key_pair name` attribute in the instance to connect through in SSH. By default Terraform assigns a default Security Group in which all incoming ports are disabled for security purposes. To allow ports usage like SSH (22) you have to explicitly define a Security Group and SSH rule.
 
-2. Use the `user_data` instance attribute to pass commands or script to run on instance startup. In my case I pass the `install-doceker.sh` script which does exactly that; install docker into the EC2.
+2. Use the `user_data` instance attribute to pass commands or script to run on instance startup. In my case I pass the `install-docker.sh` script which does exactly that; install docker into the EC2.
