@@ -1,12 +1,12 @@
 terraform {
-  # connecting to HCP Terraform to store and manage my aws infrastructure state
-  cloud {
-    organization = "my_iac_projects"
-    workspaces {
-      project = "EC2 With Docker"
-      name    = "ec2-docker"
-    }
-  }
+  # uncomment this cloud block to connect to HCP Terraform to store & manage aws infrastructure state remotely
+  # cloud {
+  #   organization = "my_iac_projects"
+  #   workspaces {
+  #     project = "EC2 With Docker"
+  #     name    = "ec2-docker"
+  #   }
+  # }
 
   # AWS provider
   required_providers {

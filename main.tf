@@ -13,15 +13,15 @@ data "aws_ami" "ubuntu" {
 }
 
 # Security Group Setup
-resource "aws_security_group" "my_cicd_securitygroup" {
+resource "aws_security_group" "my_custom_securitygroup" {
   description = "My custom security group"
-  name        = "my_cicd_securitygroup"
+  name        = "my_custom_securitygroup"
 }
 
 # allowing SSH in security group (firewall)
 resource "aws_vpc_security_group_ingress_rule" "allow_ssh" {
   description       = "Enable SSH port past the EC2 firewall"
-  security_group_id = aws_security_group.my_cicd_securitygroup.id
+  security_group_id = aws_security_group.my_custom_securitygroup.id
   ip_protocol       = "tcp"
   from_port         = 22
   to_port           = 22
@@ -32,7 +32,7 @@ resource "aws_vpc_security_group_ingress_rule" "allow_ssh" {
 # allowing all EC2 instance outbound traffic
 resource "aws_vpc_security_group_egress_rule" "allow_all_outbound" {
   description       = "Allow all outbound traffic from the EC2 instance"
-  security_group_id = aws_security_group.my_cicd_securitygroup.id
+  security_group_id = aws_security_group.my_custom_securitygroup.id
   # -1 means allow all outbound protocols and port ranges
   ip_protocol = "-1"
   # allowed to talk to all/any IP address on the internet
@@ -48,7 +48,7 @@ resource "aws_instance" "ec2_with_docker" {
   }
   key_name = var.ec2_ssh_key # AWS EC2 SSH key pair
   # using my custom security group for my EC2 instance
-  vpc_security_group_ids = [aws_security_group.my_cicd_securitygroup.id]
+  vpc_security_group_ids = [aws_security_group.my_custom_securitygroup.id]
   # install docker on EC2 boot up
   user_data = file("install-docker.sh")
 }
