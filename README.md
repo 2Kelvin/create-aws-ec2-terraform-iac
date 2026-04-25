@@ -30,8 +30,8 @@ Creating an AWS EC2 instance using Terraform and installing `Docker` automatical
 
 ## Issues I faced
 
-1. EC2 not accessible: Connection timed out when trying to connect to the container using SSH.
+1. EC2 not accessible: Connection timed out when trying to connect to the instance using SSH.
 
-- **Fix**: I resolved this by creating a security group (Firewall) and defining an allow SSH rule which I linked to my security group in terraform. I also added the `key_pair name` attribute in the instance to connect through in SSH. By default Terraform assigns a default Security Group in which all incoming ports are disabled for security purposes. To allow ports usage like SSH (22) you have to explicitly define a Security Group and SSH rule.
+- **Fix**: I resolved this by creating a security group (Firewall) and defining an allow SSH rule which I linked to my security group in terraform. By default Terraform assigns a default Security Group in which all incoming ports are disabled for security purposes. To allow ports usage like SSH (22) you have to explicitly define a Security Group and an SSH rule. Note: Remember to add the `key_pair name` attribute in the instance to allow connections through SSH. 
 
 2. Use the `user_data` instance attribute to pass commands or script to run on instance startup. In my case I pass the `install-docker.sh` script which does exactly that; install docker into the EC2.
